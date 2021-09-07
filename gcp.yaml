@@ -1,8 +1,8 @@
 plugin: gcp_compute
 projects:
-  - lw-summer
+  - xxxxxxxxxx
 auth_kind: serviceaccount
 keyed_groups:
   - prefix: tag
     key: labels
-service_account_file: /opt/ansible/inventory/service-account.json
+service_account_file: /opt/ansible/inventory/xxxxxxxxxxxxx.json
