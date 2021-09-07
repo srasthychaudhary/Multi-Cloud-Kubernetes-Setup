@@ -1,0 +1,5 @@
+- hosts: tag_Name_kubemaster
+  roles:
+  - role: "k8s_masternode"
+
+

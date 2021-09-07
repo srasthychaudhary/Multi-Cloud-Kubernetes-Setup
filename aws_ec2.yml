@@ -1,0 +1,6 @@
+plugin: aws_ec2
+regions:
+  - ap-south-1
+keyed_groups:
+  - prefix: tag
+    key: tags

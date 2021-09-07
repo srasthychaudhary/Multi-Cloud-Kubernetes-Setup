@@ -1,0 +1,5 @@
+- hosts: tag_env_azureworker2
+  roles:
+  - role: "k8s_workernode"
+
+

@@ -1,0 +1,14 @@
+- hosts: localhost
+  tasks:
+  - community.aws.ec2_instance_info:
+      filters:
+        "tag:Name": kubemaster
+        instance-state-name: [ "running"]
+    register: ec2
+
+    #- debug:
+    #  msg: "{{ ec2['instances'] }}"
+
+  - template:
+      src: "./ip.txt"
+      dest: "./k8s_masternode/vars/main.yml"

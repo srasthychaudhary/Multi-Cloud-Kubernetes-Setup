@@ -1,0 +1,70 @@
+- name: "Configure Multi Cloud k8s Cluster"
+  hosts: localhost
+  tasks:
+   - name: "Intialising Terraform for AWS Cloud"
+     shell: "terraform -chdir=./aws_instance_tf init"
+     register: awsinitial
+
+   - debug:
+          var: awsinitial.stdout_lines
+
+   - name: "Launch Instance in AWS Cloud"
+     shell: "terraform -chdir=./aws_instance_tf apply --auto-approve"
+     register: awsinstance
+
+   - debug:
+          var: awsinstance.stdout_lines
+
+   - name: "Intialising Terraform for Google Cloud"
+     shell: "terraform -chdir=./google_instance_tf init"
+     register: googleinitial
+
+   - debug:
+          var: googleinitial.stdout_lines
+
+   - name: "Launch Instance in Google Cloud"
+     shell: "terraform -chdir=./google_instance_tf apply --auto-approve"
+     register: googleinstance
+
+   - debug:
+          var: googleinstance.stdout_lines
+
+   - name: "Intialising Terraform for Azure Cloud"
+     shell: "terraform -chdir=./azure_instance_tf init"
+     register: azureinitial
+
+   - debug:
+          var: azureinitial.stdout_lines
+
+   - name: "Launch Instance in Azure Cloud"
+     shell: "terraform -chdir=./azure_instance_tf apply --auto-approve"
+     register: azureinstance
+
+   - debug:
+          var: azureinstance.stdout_lines
+   
+   - name: "Retriving Public ip of the kubernetes masternode of aws"
+     command: "chdir=./k8s_master_aws ansible-playbook publicip.yml"
+
+
+   - name: "Configuring Kubernetes Masternode on AWS Cloud Dynamically"
+     command: "chdir=./k8s_master_aws ansible-playbook masternode.yml"
+     register: awsmaster
+
+   - debug:
+          var: awsmaster.stdout_lines
+
+   - name: "Configuring Kubernetes Workernode1 on Google Cloud Dynamically"
+     command: "chdir=./k8s_worker1_google ansible-playbook workernode1.yml"
+     register: googleworker1
+
+   - debug:
+          var: googleworker1.stdout_lines
+
+   - name: "Configuring Kubernetes Workernode2 on Azure Cloud Dynamically"
+     command: "chdir=./k8s_worker2_azure ansible-playbook workernode2.yml"
+     register: azureworker2
+
+   - debug:
+          var: azureworker2.stdout_lines
+

@@ -1,0 +1,5 @@
+- hosts: tag_env_googleworker1
+  roles:
+  - role: "k8s_workernode"
+
+
