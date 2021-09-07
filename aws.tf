@@ -5,10 +5,10 @@ provider "aws" {
 
 #launch instance
 resource "aws_instance" "os1" {
-  ami           = "ami-010aff33ed5991201"
+  ami           = "ami-00000000"
   instance_type = "t2.micro"
   security_groups =[ "foransible" ]
-  key_name = "abkey"
+  key_name = "xxxxxx"
   tags = {
     Name = "kubemaster"
   }
