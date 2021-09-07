@@ -1,7 +1,7 @@
 provider "google" {
-  project     = "lw-summer"
-  region      = "us-central1-a"
-  credentials = "lw-summer-2f41aeda851f.json"
+  project     = "xxxxxx"
+  region      = "xxxxx"
+  credentials = "xxxxxxxxxxxx.json"
 }
 
 resource "google_compute_instance" "os1" {
